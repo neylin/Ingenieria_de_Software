@@ -5,14 +5,13 @@ Created on May 1, 2015
 '''
 
 class clsDpt(object):
-    '''
-    classdocs
-    '''
+    iddpt = db.Column(db.Integer, primary_key=True)
+    namedpt = db.Column(db.String(50), unique=True)
+    user_dpt = db.relationship('clsuser', backref='clsdpt', lazy='dynamic')
 
-    def __init__(self):
-        '''
-        Constructor
-        '''
+    def __init__(self, iddpt, namedpt):
+        self.iddpt = iddpt #departamento
+        self.namedpt = namedpt
         
     def insert_dpt(self):
         '''

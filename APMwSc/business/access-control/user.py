@@ -4,15 +4,22 @@ Created on May 1, 2015
 @author: neylin
 '''
 
-class clsUser(object):
-    '''
-    classdocs
-    '''
+class clsUser(db.Model):
+    fullname = db.Column(db.String(50),primary_key=True)
+    username = db.Column(db.String(16), unique=True)
+    password = db.Column(db.String(16),unique=True)
+    email = db.Column(db.String(30), unique=True)
+    iddpt = db.Column(db.Integer,db.ForeignKey('clsdpt.iddpt'))
+    idrole = db.Column(db.Integer,db.ForeignKey('clsrole.idrole'))
 
-    def __init__(self):
+    def __init__(self, fullname, username, password, email, iddpt, idrole):
         '''
         Constructor
         '''
+        self.fullname = fullname
+        self.username = username
+        self.password = password
+        self.email = email
         
     def insert_user(self):
         '''
