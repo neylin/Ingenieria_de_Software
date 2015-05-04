@@ -3,6 +3,16 @@ Created on May 1, 2015
 
 @author: neylin
 '''
+from flask import flask
+from flask.migrate import Migrate
+from flask.script import Manager
+from flask.sqlalchemy import SQLAlchemy
+
+app = flask(_name_)
+manager = Manager(app) 
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+manager.add_command('db', MigrateCommand)
 
 class clsRole(db.Model):
     idrole = db.Column(db.Integer, primary_key=True)
@@ -10,25 +20,24 @@ class clsRole(db.Model):
     user_role = db.relationship('clsuser', backref='clsrole', lazy='dynamic')
 
     def __init__(self, idrole, namerole):
-        self.idrole = idrole #departamento
+        '''
+        Constructor
+        '''
+        self.idrole = idrole
         self.namerole = namerole
         
-    def insert_role(self):
-        '''
-        Constructor
-        '''
+    def insert_role(self, idrole, namerole, user_role):
+        rol = clsRole(idrole, namerole, user_role)
+        db.session.add(rol)
+        db.session.commit()
         
     def find_role(self):        
-        '''
-        Constructor
-        '''
+        rol = clsRole.query.filter_by(idrole).first()
         
     def modify_role(self):
-        '''
-        Constructor
-        '''
+        pass
         
-    def delete_role(self):
-        '''
-        Constructor
-        '''
+    def delete_role(self, idrole):
+        rol = clsRole(idrole)
+        db.session.delete(rol)
+        db.session.commit()

@@ -10,25 +10,24 @@ class clsDpt(object):
     user_dpt = db.relationship('clsuser', backref='clsdpt', lazy='dynamic')
 
     def __init__(self, iddpt, namedpt):
-        self.iddpt = iddpt #departamento
+        '''
+        Constructor
+        '''
+        self.iddpt = iddpt
         self.namedpt = namedpt
         
-    def insert_dpt(self):
-        '''
-        Constructor
-        '''
+    def insert_dpt(self, iddpt, namedpt, user_dpt):
+        dpto = clsDpt(iddpt, namedpt, user_dpt)
+        db.session.add(dpto)
+        db.session.commit()
         
-    def find_dpt(self):        
-        '''
-        Constructor
-        '''
+    def find_dpt(self, iddpt):        
+        dpto = clsDpt.query.filter_by(iddpt).first()
         
     def modify_dpt(self):
-        '''
-        Constructor
-        '''
+        pass
         
-    def delete_dpt(self):
-        '''
-        Constructor
-        '''
+    def delete_dpt(self, iddpt):
+        dpto = clsDpt(iddpt)
+        db.session.delete(dpto)
+        db.session.commit()

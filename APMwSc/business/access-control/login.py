@@ -35,12 +35,6 @@ class clsLogin(object):
                 salt = uuid.uuid4().hex
                 # hash
                 oHash= hashlib.sha256(salt.encode() + value.encode()).hexdigest() + ':' + salt
-            #else:
-                #print('El Password suministrado NO ES CORRECTO. \n'
-                #     'Considere que debe contener al menos: \n'
-                #     '- 1 letra mayuscula y 1 minuscula \n'
-                #     '- 1 numero \n'
-                #     '- 1 caracter especial: @ . # $ + * ! \n')
         else:
             print('El Password debe contener entre 8 y 16 caracteres')
         return oHash   
@@ -54,8 +48,6 @@ class clsLogin(object):
                 # uuid es usado para generar numeros random
                 oPassworkEncript, salt = oPassworkEncript.split(':')
                 return oPassworkEncript == hashlib.sha256(salt.encode() + oCheckPassword.encode()).hexdigest()
-            #else:
-                #print('El Password no corresponde con lo requerido')
         else:
             print('El Password no posee la cantidad de caracteres requerida')
             return False

@@ -21,22 +21,20 @@ class clsUser(db.Model):
         self.password = password
         self.email = email
         
-    def insert_user(self):
-        '''
-        Constructor
-        '''
+    def insert_user(self, fullname, username, password, email, iddpt, idrole):
+        usuario = clsUser(fullname,username,password,email,iddpt,idrole)
+        db.session.add(usuario)
+        db.session.commit()
         
-    def find_user(self):        
-        '''
-        Constructor
-        '''
+    def find_user(self, fullname):        
+        usuario = clsUser.query.filter_by(fullname).first()
         
     def modify_user(self):
-        '''
-        Constructor
-        '''
+        pass
+        #db.session.modify()
         
-    def delete_user(self):
-        '''
-        Constructor
-        '''
+    def delete_user(self, fullname):
+        usuario = clsUser(fullname)
+        db.session.delete(usuario)
+        db.session.commit()
+        
