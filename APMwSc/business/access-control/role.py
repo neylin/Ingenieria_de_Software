@@ -3,10 +3,10 @@ Created on May 1, 2015
 
 @author: neylin
 '''
-from flask import flask
-from flask.migrate import Migrate
-from flask.script import Manager
-from flask.sqlalchemy import SQLAlchemy
+from flask import Flask
+from Flask.migrate import Migrate
+from Flask.script import Manager
+from Flask.sqlalchemy import SQLAlchemy
 
 app = flask(_name_)
 manager = Manager(app) 
