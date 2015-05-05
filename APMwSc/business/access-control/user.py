@@ -1,4 +1,4 @@
-'''
+  '''
 Created on May 1, 2015
 
 @author: neylin
@@ -22,7 +22,7 @@ class clsUser(db.Model):
         self.email = email
         
     def insert_user(self, fullname, username, password, email, iddpt, idrole):
-        usuario = clsUser(fullname,username,password,email,iddpt,idrole)
+        usuario = clsUser(fullname, username, password, email, iddpt, idrole)
         db.session.add(usuario)
         db.session.commit()
         

@@ -4,7 +4,7 @@ Created on May 1, 2015
 @author: neylin
 '''
 
-class clsDpt(object):
+class clsDpt(db.Model):
     iddpt = db.Column(db.Integer, primary_key=True)
     namedpt = db.Column(db.String(50), unique=True)
     user_dpt = db.relationship('clsuser', backref='clsdpt', lazy='dynamic')

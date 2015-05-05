@@ -3,16 +3,6 @@ Created on May 1, 2015
 
 @author: neylin
 '''
-from flask import flask
-from flask.migrate import Migrate
-from flask.script import Manager
-from flask.sqlalchemy import SQLAlchemy
-
-app = flask(_name_)
-manager = Manager(app) 
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
-manager.add_command('db', MigrateCommand)
 
 class clsRole(db.Model):
     idrole = db.Column(db.Integer, primary_key=True)
