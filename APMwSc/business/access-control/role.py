@@ -4,6 +4,7 @@ Created on May 1, 2015
 @author: Neylin Belisario
          Oriana Graterol
 '''
+<<<<<<< HEAD
 from flask import Flask
 from Flask.migrate import Migrate
 from Flask.script import Manager
@@ -14,6 +15,8 @@ manager = Manager(app)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 manager.add_command('db', MigrateCommand)
+=======
+>>>>>>> refs/heads/master
 
 class clsRole(db.Model):
     __tablename__ = 'roles'

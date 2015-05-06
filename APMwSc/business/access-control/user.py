@@ -26,7 +26,7 @@ class clsUser(db.Model):
         
     def insert_user(self, fullname, username, password, email, iddpt, idrole):
         if (len(fullname)<= 50) and (len(username)<= 16) and (len(password)<= 16) and (len(email)<= 30) and isinstance(iddpt,int) and isinstance(idrole, int) :
-            if ((fullname != None) && (username != None)):
+            if ((fullname != None) and (username != None)):
                 password_constructor =clsLogin()
                 oPassworkEncript = password_constructor.encript(password)
                 if oPassworkEncript:
@@ -53,14 +53,14 @@ class clsUser(db.Model):
 
 
     def find_user(self, fullname): 
-        if ((len(fullname)<=50) && (fullname != None)):       
+        if ((len(fullname)<=50) and (fullname != None)):       
             usuario = clsUser.query.filter_by(fullname).first()
             return usuario
         return None
 
 
     def modify_user(self,fullname):
-        if ((len(fullname)<=50) && (fullname != None)):
+        if ((len(fullname)<=50) and (fullname != None)):
             usuario = clsUser(fullname)
             db.session.add(usuario)
             db.session.commit()
@@ -69,7 +69,7 @@ class clsUser(db.Model):
         
         
     def delete_user(self, fullname):
-        if ((len(fullname)<=50) && (fullname != None)):
+        if ((len(fullname)<=50) and (fullname != None)):
             usuario = clsUser(fullname)
             db.session.delete(usuario)
             db.session.commit()
