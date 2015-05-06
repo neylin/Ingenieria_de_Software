@@ -4,32 +4,8 @@ Created on May 1, 2015
 @author: Neylin Belisario
          Oriana Graterol
 '''
-<<<<<<< HEAD
-from flask import Flask
-from Flask.migrate import Migrate
-from Flask.script import Manager
-from Flask.sqlalchemy import SQLAlchemy
 
-app = flask(_name_)
-manager = Manager(app) 
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
-manager.add_command('db', MigrateCommand)
-=======
->>>>>>> refs/heads/master
-
-class clsRole(db.Model):
-    __tablename__ = 'roles'
-    idrole = db.Column(db.Integer, primary_key=True)
-    namerole = db.Column(db.String(50), unique=True)
-    user_role = db.relationship('clsuser', backref='clsrole', lazy='dynamic')
-
-    def __init__(self, idrole, namerole):
-        '''
-        Constructor
-        '''
-        self.idrole = idrole
-        self.namerole = namerole
+class clsRole():
         
     def insert_role(self, idrole, namerole, user_role):
         rol = clsRole(idrole, namerole, user_role)
