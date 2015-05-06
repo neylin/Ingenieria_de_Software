@@ -5,32 +5,61 @@ Created on May 1, 2015
          Oriana Graterol
 '''
 
-class clsDpt(db.Model):
-    iddpt = db.Column(db.Integer, primary_key=True)
-    namedpt = db.Column(db.String(50), unique=True)
-    user_dpt = db.relationship('clsuser', backref='clsdpt', lazy='dynamic')
+# --------------------- IMPORTACIONES --------------------- #
+import os
+import sys
 
-    def __init__(self, iddpt, namedpt):
-        '''
-        Constructor
-        '''
-        self.iddpt = iddpt
-        self.namedpt = namedpt
+# Esto permite usar model.py
+sys.path.append('../../data')
+import model
+
+from login import clsLogin
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+# --------------------------------------------------------- #
+
+# -- BD a usar -- #
+DB_session = sessionmaker(bind = model.engine)
+session = DB_session()
+
+
+class clsDpt():
         
-    def insert_dpt(self, iddpt, namedpt, user_dpt):
-        dpto = clsDpt(iddpt, namedpt, user_dpt)
-        db.session.add(dpto)
-        db.session.commit()
+    # -- Insertar Departamento -- #
+    def insert_dpt(self, iddpt, namedpt):
+        dpto = model.Dpt(iddpt, namedpt)
+        session.add(dpto)
+        session.commit()
         
-    def find_dpt(self, iddpt):        
-        dpto = clsDpt.query.filter_by(iddpt).first()
         
-    def modify_dpt(self,iddpt):
-        dpto = clsRole(iddpt)
-        db.session.add(dpto)
-        db.session.commit()
+    # -- Buscar Departamento -- #
+    def find_dpt(self, iddpt): 
+        if (iddpt != None):       
+            dpto = session.query(model.Dpt).filter(model.Dpt.iddpt == iddpt).all()
+            return dpto
+        return None
+    
+    
+    # -- Modificar Departamento -- #
+    def modify_dpt_iddpt(self, iddpt, new):
+        if (iddpt != None):
+            session.query(model.Dpt).filter(model.Dpt.iddpt == iddpt).update({'iddpt':(new)})
+            session.commit()
+            return True
+        return None
+    
+    def modify_dpt_namedpt(self, namedpt, new):
+        if (namedpt != None):
+            session.query(model.Dpt).filter(model.Dpt.namedpt == namedpt).update({'namedpt':(new)})
+            session.commit()
+            return True
+        return None
         
+        
+    # -- Borrar Departamento -- #
     def delete_dpt(self, iddpt):
-        dpto = clsDpt(iddpt)
-        db.session.delete(dpto)
-        db.session.commit()
+        if (iddpt != None):
+            session.query(model.Dpt).filter(model.Dpt.iddpt == iddpt).delete()
+            session.commit()
+            return True
+        return None
