@@ -6,6 +6,7 @@ Created on May 1, 2015
          Oriana Graterol
 '''
 
+# --------------------- IMPORTACIONES --------------------- #
 import os
 import sys
 
@@ -16,8 +17,9 @@ import model
 from login import clsLogin
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+# --------------------------------------------------------- #
 
-#-- BD a usar
+# -- BD a usar -- #
 DB_session = sessionmaker(bind = model.engine)
 session = DB_session()
 
@@ -38,8 +40,8 @@ class clsUser():
                     if password_constructor.check_password(oPassworkEncript, oCheckPassword):
                         print('Ha introducido el password correcto')
                         usuario = model.User(fullname,username,password,email,iddpt,idrole)
-                        db.session.add(usuario)
-                        db.session.commit()
+                        session.add(usuario)
+                        session.commit()
                         return True
     
                     else:
@@ -65,35 +67,35 @@ class clsUser():
     def modify_user_fullname(self, fullname, new):
         if (fullname != None):
             session.query(model.User).filter(model.User.fullname == fullname).update({'fullname':(new)})
-            db.session.commit()
+            session.commit()
             return True
         return None
     
     def modify_user_username(self, username, new):
         if (username != None):
             session.query(model.User).filter(model.User.username == username).update({'username':(new)})
-            db.session.commit()
+            session.commit()
             return True
         return None
     
     def modify_user_email(self, email, new):
         if (email != None):
             session.query(model.User).filter(model.User.email == email).update({'email':(new)})
-            db.session.commit()
+            session.commit()
             return True
         return None
     
     def modify_user_iddpt(self, iddpt, new):
         if (iddpt != None):
             session.query(model.User).filter(model.User.iddpt == iddpt).update({'iddpt':(new)})
-            db.session.commit()
+            session.commit()
             return True
         return None
     
     def modify_user_idrole(self, idrole, new):
         if (idrole != None):
             session.query(model.User).filter(model.User.idrole == idrole).update({'idrole':(new)})
-            db.session.commit()
+            session.commit()
             return True
         return None
     
@@ -102,7 +104,7 @@ class clsUser():
     def delete_user(self, username):
         if (username != None):
             session.query(model.User).filter(model.User.username == username).delete()
-            db.session.commit()
+            session.commit()
             return True
         return None
         
