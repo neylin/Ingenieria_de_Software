@@ -1,4 +1,4 @@
-'''
+ '''
 Created on May 1, 2015
 
 @author: neylin
@@ -29,9 +29,11 @@ class clsUser(db.Model):
     def find_user(self, fullname):        
         usuario = clsUser.query.filter_by(fullname).first()
         
-    def modify_user(self):
-        pass
-        #db.session.modify()
+    def modify_user(self,fullname):
+        usuario = clsUser(fullname)
+        db.session.add(usuario)
+        db.session.commit()
+        
         
     def delete_user(self, fullname):
         usuario = clsUser(fullname)
