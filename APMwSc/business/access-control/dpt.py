@@ -1,7 +1,8 @@
 '''
 Created on May 1, 2015
 
-@author: neylin
+@author: Neylin Belisario
+         Oriana Graterol
 '''
 
 class clsDpt(db.Model):
@@ -24,8 +25,10 @@ class clsDpt(db.Model):
     def find_dpt(self, iddpt):        
         dpto = clsDpt.query.filter_by(iddpt).first()
         
-    def modify_dpt(self):
-        pass
+    def modify_dpt(self,iddpt):
+        dpto = clsRole(iddpt)
+        db.session.add(dpto)
+        db.session.commit()
         
     def delete_dpt(self, iddpt):
         dpto = clsDpt(iddpt)

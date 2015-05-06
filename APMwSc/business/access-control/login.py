@@ -3,7 +3,7 @@
 Created on 24/9/2014
 
 @author: Neylin Belisario
-         Andres Hernandez
+         Oriana Graterol
 '''
 
 import uuid
