@@ -15,6 +15,7 @@ migrate = Migrate(app, db)
 manager.add_command('db', MigrateCommand)
 
 class clsRole(db.Model):
+    __tablename__ = 'roles'
     idrole = db.Column(db.Integer, primary_key=True)
     namerole = db.Column(db.String(50), unique=True)
     user_role = db.relationship('clsuser', backref='clsrole', lazy='dynamic')
@@ -34,8 +35,10 @@ class clsRole(db.Model):
     def find_role(self):        
         rol = clsRole.query.filter_by(idrole).first()
         
-    def modify_role(self):
-        pass
+    def modify_role(self,idrole):
+        rol = clsRole(idrole)
+        db.session.add(rol)
+        db.session.commit()
         
     def delete_role(self, idrole):
         rol = clsRole(idrole)

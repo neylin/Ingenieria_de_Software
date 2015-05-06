@@ -5,6 +5,7 @@ Created on May 1, 2015
 '''
 
 class clsUser(db.Model):
+    __tablename__ = 'users'
     fullname = db.Column(db.String(50),primary_key=True)
     username = db.Column(db.String(16), unique=True)
     password = db.Column(db.String(16),unique=True)
