@@ -1,7 +1,8 @@
 '''
 Created on May 1, 2015
 
-@author: neylin
+@author: Neylin Belisario
+         Oriana Graterol
 '''
 from flask import Flask
 from Flask.migrate import Migrate

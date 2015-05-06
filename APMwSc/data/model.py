@@ -1,3 +1,10 @@
+'''
+Created on May 1, 2015
+
+@author: Neylin Belisario
+         Oriana Graterol
+'''
+
 from flask import Flask
 from flask.ext.migrate import Migrate, MigrateCommand
 from flask.ext.script import Manager
