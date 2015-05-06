@@ -3,6 +3,7 @@ Created on May 1, 2015
 
 @author: neylin
 '''
+from login import clsLogin
 
 class clsUser(db.Model):
     __tablename__ = 'users'
@@ -23,21 +24,53 @@ class clsUser(db.Model):
         self.email = email
         
     def insert_user(self, fullname, username, password, email, iddpt, idrole):
-        usuario = clsUser(fullname,username,password,email,iddpt,idrole)
-        db.session.add(usuario)
-        db.session.commit()
+        if (len(fullname)<= 50) and (len(username)<= 16) and (len(password)<= 16) and (len(email)<= 30) and isinstance(iddpt,int) and isinstance(idrole, int) :
+            password_constructor =clsLogin()
+            oPassworkEncript = password_constructor.encript(password)
+            if oPassworkEncript:
+                print('El Password almacenado en la memoria es: ' + oPassworkEncript)
+            
+                #Para validar el passwork introducido
+                oCheckPassword = input('Para verificar su password, ingreselo nuevamente: ')
+                if password_constructor.check_password(oPassworkEncript, oCheckPassword):
+                    print('Ha introducido el password correcto')
+                    usuario = clsUser(fullname,username,password_prueba,email,iddpt,idrole)
+                    db.session.add(usuario)
+                    db.session.commit()
+                    return True
+
+                else:
+                    print('El password es diferente')
+            else:
+                print('El Password suministrado NO ES CORRECTO. \n'
+                      'Considere que debe contener al menos: \n'
+                      '- 1 letra mayuscula y 1 minuscula \n'
+                      '- 1 numero \n'
+                      '- 1 caracter especial: @ . # $ + * ! \n')
+                return None
+            
         
-    def find_user(self, fullname):        
-        usuario = clsUser.query.filter_by(fullname).first()
+    def find_user(self, fullname): 
+        if (len(fullname)<=50):       
+            usuario = clsUser.query.filter_by(fullname).first()
+            return usuario
+        return None
         
     def modify_user(self,fullname):
-        usuario = clsUser(fullname)
-        db.session.add(usuario)
-        db.session.commit()
+        if (len(fullname)<=50): 
+            usuario = clsUser(fullname)
+            db.session.add(usuario)
+            db.session.commit()
+            return True
+        return None
+    
         
         
     def delete_user(self, fullname):
-        usuario = clsUser(fullname)
-        db.session.delete(usuario)
-        db.session.commit()
+        if (len(fullname)<=50):
+            usuario = clsUser(fullname)
+            db.session.delete(usuario)
+            db.session.commit()
+            return True
+        return None
         
