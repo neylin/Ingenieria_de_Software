@@ -1,46 +1,64 @@
 '''
 Created on May 1, 2015
-
-@author: neylin
+@author: Neylin Belisario
+         Oriana Graterol
 '''
-from flask import Flask
-from Flask.migrate import Migrate
-from Flask.script import Manager
-from Flask.sqlalchemy import SQLAlchemy
 
-app = flask(_name_)
-manager = Manager(app) 
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
-manager.add_command('db', MigrateCommand)
+# --------------------- IMPORTACIONES --------------------- #
+import os
+import sys
 
-class clsRole(db.Model):
-    __tablename__ = 'roles'
-    idrole = db.Column(db.Integer, primary_key=True)
-    namerole = db.Column(db.String(50), unique=True)
-    user_role = db.relationship('clsuser', backref='clsrole', lazy='dynamic')
+# Esto permite usar model.py
+sys.path.append('../../data')
+import model
 
-    def __init__(self, idrole, namerole):
-        '''
-        Constructor
-        '''
-        self.idrole = idrole
-        self.namerole = namerole
+from login import clsLogin
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+# --------------------------------------------------------- #
+
+# -- BD a usar -- #
+DB_session = sessionmaker(bind = model.engine)
+session = DB_session()
+
+
+class clsRole():
         
-    def insert_role(self, idrole, namerole, user_role):
-        rol = clsRole(idrole, namerole, user_role)
-        db.session.add(rol)
-        db.session.commit()
+    # -- Insertar Rol -- #
+    def insert_role(self, idrole, namerole):
+        rol = model.Role(idrole, namerole)
+        session.add(rol)
+        session.commit()
+    
+    
+    # -- Buscar Rol -- #
+    def find_role(self, idrole):        
+        if (idrole != None):       
+            rol = session.query(model.Role).filter(model.Role.idrole == idrole).all()
+            return rol
+        return None
         
-    def find_role(self):        
-        rol = clsRole.query.filter_by(idrole).first()
         
-    def modify_role(self,idrole):
-        rol = clsRole(idrole)
-        db.session.add(rol)
-        db.session.commit()
+    # -- Modificar Rol -- #
+    def modify_role_idrole(self, idrole, new):
+        if (idrole != None):
+            session.query(model.Role).filter(model.Role.idrole == idrole).update({'idrole':(new)})
+            session.commit()
+            return True
+        return None
+    
+    def modify_role_namerole(self, namerole, new):
+        if (namerole != None):
+            session.query(model.Role).filter(model.Role.namerole == namerole).update({'namerole':(new)})
+            session.commit()
+            return True
+        return None
         
+        
+    # -- Borrar Rol -- #
     def delete_role(self, idrole):
-        rol = clsRole(idrole)
-        db.session.delete(rol)
-        db.session.commit()
+        if (idrole != None):
+            session.query(model.Role).filter(model.Role.idrole == idrole).delete()
+            session.commit()
+            return True
+        return None

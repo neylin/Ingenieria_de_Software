@@ -8,11 +8,21 @@
     Equipo: SoftDev
     Trimestre Abril - Julio 2015
     """
-
+    
+# --------------------- IMPORTACIONES --------------------- #
 import unittest
-from user import clsUser
+
+import os
+import sys
+
+# Esto permite usar user.py
+sys.path.append('../../business/access-control')
+import user
+
 from test.test_keyword import NONEXISTENT_FILE
 from tkinter.constants import INSERT
+# --------------------------------------------------------- #
+
 
 class TestUser(unittest.TestCase):
     
@@ -20,35 +30,21 @@ class TestUser(unittest.TestCase):
     
     
     def test1InsertValido(self):
-        user = clsUser()
-        resultado = user.insert("Oriana Graterol","oggs22",12345678*A," oggs22@gmail.com",11,2)
+        usuario = clsUser()
+        resultado = usuario.insert_user("OrianaGraterol","oggs22",12345678*A," oggs22@gmail.com",11,2)
         self.assertTrue(resultado)
         
-    def test6InsertValidoFullName1(self):
-        user = clsUser()
-        resultado = user.insert("a","oggs22",12345678*A," oggs22@gmail.com",11,"as2")
-        self.assertTrue(resultado)
-    
     def test2InsertInvalidoIDdptString(self):
-        user = clsUser()
-        resultado = user.insert("Oriana Graterol","oggs22",12345678*A," oggs22@gmail.com","a11",2)
-        self.assertFalse(resultado)
+        usuario = clsUser()
+        resultado = usuario.insert_user("OrianaGraterol","oggs22",12345678*A," oggs22@gmail.com","a11",2)
+        self.assertTrue(resultado)
         
     def test3InsertInvalidoIDrolString(self):
-        user = clsUser()
-        resultado = user.insert("OrianaGraterol","oggs22",12345678*A," oggs22@gmail.com",11,"as2")
-        self.assertFalse(resultado)
+        usuario = clsUser()
+        resultado = usuario.insert_user("OrianaGraterol","oggs22",12345678*A," oggs22@gmail.com",11,"as2")
+        self.assertTrue(resultado)
         
     def test4InsertInvalidoFullName51(self):
-        user = clsUser()
-        resultado = user.insert("qwertyuiopaOrianaGraterolGGDJDGJSsgdhsafsyw8t743yuy","oggs22",12345678*A," oggs22@gmail.com",11,"as2")
+        usuario = clsUser()
+        resultado = usuario.insert_user("qwertyuiopaOrianaGraterolGGDJDGJSsgdhsafsyw8t743yuy","oggs22",12345678*A," oggs22@gmail.com",11,"as2")
         self.assertTrue(resultado)
-        
-    def test5InsertInvalidoFullNameEmpty (self):
-        user = clsUser()
-        resultado = user.insert("","oggs22",12345678*A," oggs22@gmail.com",11,"as2")
-        self.assertTrue(resultado)
-    
-    def test7InsertIn
-        
-    

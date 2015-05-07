@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-. 
 '''
 Created on 24/9/2014
-
 @author: Neylin Belisario
-         Andres Hernandez
+         Oriana Graterol
 '''
 
 import uuid
@@ -64,7 +63,6 @@ oAccessControl=clsAccessControl()
 oPassworkEncript = oAccessControl.encript(oPassword)
 if oPassworkEncript:
     print('El Password almacenado en la memoria es: ' + oPassworkEncript)
-
     #Para validar el passwork introducido
     oCheckPassword = input('Para verificar su password, ingreselo nuevamente: ')
     if oAccessControl.check_password(oPassworkEncript, oCheckPassword):
