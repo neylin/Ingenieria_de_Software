@@ -17,7 +17,7 @@ import sys
 
 # Esto permite usar user.py
 sys.path.append('../../business/access-control')
-import user
+from user import clsUser
 
 from test.test_keyword import NONEXISTENT_FILE
 from tkinter.constants import INSERT
