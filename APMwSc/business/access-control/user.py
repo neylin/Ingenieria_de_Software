@@ -15,13 +15,16 @@ sys.path.append('../../data')
 import model
 
 from login import clsLogin
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+#from sqlalchemy import create_engine
+#from sqlalchemy.orm import sessionmaker
+
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 # --------------------------------------------------------- #
 
 # -- BD a usar -- #
-DB_session = sessionmaker(bind = model.engine)
-session = DB_session()
+#DB_session = sessionmaker(bind = model.engine)
+#session = DB_session()
 
 
 class clsUser():

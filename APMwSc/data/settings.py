@@ -12,5 +12,5 @@ DATABASE = {
     'port': '5432',
     'username': 'BD',
     'password': '',
-    'database': 'prueba'
+    'database': 'test'
 }
