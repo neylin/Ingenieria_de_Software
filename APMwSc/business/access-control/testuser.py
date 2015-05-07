@@ -21,23 +21,34 @@ class TestUser(unittest.TestCase):
     
     def test1InsertValido(self):
         user = clsUser()
-        resultado = user.insert("OrianaGraterol","oggs22",12345678*A," oggs22@gmail.com",11,2)
+        resultado = user.insert("Oriana Graterol","oggs22",12345678*A," oggs22@gmail.com",11,2)
+        self.assertTrue(resultado)
+        
+    def test6InsertValidoFullName1(self):
+        user = clsUser()
+        resultado = user.insert("a","oggs22",12345678*A," oggs22@gmail.com",11,"as2")
         self.assertTrue(resultado)
     
     def test2InsertInvalidoIDdptString(self):
         user = clsUser()
-        resultado = user.insert("OrianaGraterol","oggs22",12345678*A," oggs22@gmail.com","a11",2)
-        self.assertTrue(resultado)
+        resultado = user.insert("Oriana Graterol","oggs22",12345678*A," oggs22@gmail.com","a11",2)
+        self.assertFalse(resultado)
         
     def test3InsertInvalidoIDrolString(self):
         user = clsUser()
         resultado = user.insert("OrianaGraterol","oggs22",12345678*A," oggs22@gmail.com",11,"as2")
-        self.assertTrue(resultado)
+        self.assertFalse(resultado)
         
     def test4InsertInvalidoFullName51(self):
         user = clsUser()
         resultado = user.insert("qwertyuiopaOrianaGraterolGGDJDGJSsgdhsafsyw8t743yuy","oggs22",12345678*A," oggs22@gmail.com",11,"as2")
         self.assertTrue(resultado)
         
+    def test5InsertInvalidoFullNameEmpty (self):
+        user = clsUser()
+        resultado = user.insert("","oggs22",12345678*A," oggs22@gmail.com",11,"as2")
+        self.assertTrue(resultado)
     
+    def test7InsertIn
+        
     
