@@ -115,21 +115,17 @@ newPassword = input('Por favor ingrese su password: ')
 newEmail = input('Por favor ingrese su email: ')
 newIddpt = input('Por favor ingrese su iddpt: ')
 newIdrole = input('Por favor ingrese su idrole: ')
-#Se crea un objeto tipo clsAccessControl
-usuario = clsUser()
+#Se crea un objeto tipo clsUser
+usuario = model.User()
 insertar_usuario = usuario.insert_user(newFullname, newUsername, newPassword, newEmail, newIddpt, newIdrole)
-if oPassworkEncript:
-    print('El Password almacenado en la memoria es: ' + oPassworkEncript)
+if insertar_usuario:
+    print('El Usuario almacenado es: ' + insertar_usuario)
 
-    #Para validar el passwork introducido
-    oCheckPassword = input('Para verificar su password, ingreselo nuevamente: ')
-    if oAccessControl.check_password(oPassworkEncript, oCheckPassword):
-        print('Ha introducido el password correcto')
+    buscar_usuario = usuario.find_user(newUsername)
+
+    if buscar_usuario:
+        print('El usuario encontrado es: ' + buscar_usuario)
     else:
-        print('El password es diferente')
+        print('No se ha encontrado el usuario')
 else:
-    print('El Password suministrado NO ES CORRECTO. \n'
-          'Considere que debe contener al menos: \n'
-          '- 1 letra mayuscula y 1 minuscula \n'
-          '- 1 numero \n'
-          '- 1 caracter especial: @ . # $ + * ! \n')
+    print('No se ha insertado el usuario')
