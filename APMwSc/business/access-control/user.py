@@ -106,3 +106,28 @@ class clsUser():
             return True
         return None
         
+#Se pide info al usuario 
+newFullname = input('Por favor ingrese su nombre: ')
+newUsername = input('Por favor ingrese su usuario: ')
+newPassword = input('Por favor ingrese su password: ')
+newEmail = input('Por favor ingrese su email: ')
+newIddpt = input('Por favor ingrese su iddpt: ')
+newIdrole = input('Por favor ingrese su idrole: ')
+#Se crea un objeto tipo clsAccessControl
+usuario = clsUser()
+insertar_usuario = usuario.insert_user(newFullname, newUsername, newPassword, newEmail, newIddpt, newIdrole)
+if oPassworkEncript:
+    print('El Password almacenado en la memoria es: ' + oPassworkEncript)
+
+    #Para validar el passwork introducido
+    oCheckPassword = input('Para verificar su password, ingreselo nuevamente: ')
+    if oAccessControl.check_password(oPassworkEncript, oCheckPassword):
+        print('Ha introducido el password correcto')
+    else:
+        print('El password es diferente')
+else:
+    print('El Password suministrado NO ES CORRECTO. \n'
+          'Considere que debe contener al menos: \n'
+          '- 1 letra mayuscula y 1 minuscula \n'
+          '- 1 numero \n'
+          '- 1 caracter especial: @ . # $ + * ! \n')        
