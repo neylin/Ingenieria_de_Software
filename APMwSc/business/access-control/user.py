@@ -1,25 +1,28 @@
-'''
+  '''
 Created on May 1, 2015
 @author: Neylin Belisario
          Oriana Graterol
 '''
 
-# --------------------- IMPORTACIONES --------------------- #
 import os
-import sys
-
-# Esto permite usar model.py
-sys.path.append('../../data')
-import model
-
+from flask import Flask
+from model import db
+#from flask.ext.sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from login import clsLogin
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-# --------------------------------------------------------- #
+from model import User
 
-# -- BD a usar -- #
-DB_session = sessionmaker(bind = model.engine)
-session = DB_session()
+app = Flask(__name__)
+
+basedir = os.path.abspath(os.path.dirname(__file__))
+#SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'test.db')
+#SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'test.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'test.db')
+db = SQLAlchemy(app)
+db.create_all()
+
 
 
 class clsUser():
@@ -28,29 +31,14 @@ class clsUser():
     def insert_user(self, fullname, username, password, email, iddpt, idrole):
         if (len(fullname)<= 50) and (len(username)<= 16) and (len(password)<= 16) and (len(email)<= 30) and isinstance(iddpt,int) and isinstance(idrole, int) :
             if ((fullname != None) and (username != None)):
-                password_constructor = clsLogin()
-                oPassworkEncript = password_constructor.encript(password)
-                if oPassworkEncript:
-                    print('El Password almacenado en la memoria es: ' + oPassworkEncript)
-                
-                    #Para validar el passwork introducido
-                    oCheckPassword = input('Para verificar su password, ingreselo nuevamente: ')
-                    if password_constructor.check_password(oPassworkEncript, oCheckPassword):
-                        print('Ha introducido el password correcto')
                         usuario = model.User(fullname,username,password,email,iddpt,idrole)
-                        session.add(usuario)
-                        session.commit()
+                        db.session.add(usuario)
+                        db.session.commit()
                         return True
     
-                    else:
-                        print('El password es diferente')
-                else:
-                    print('El Password suministrado NO ES CORRECTO. \n'
-                          'Considere que debe contener al menos: \n'
-                          '- 1 letra mayuscula y 1 minuscula \n'
-                          '- 1 numero \n'
-                          '- 1 caracter especial: @ . # $ + * ! \n')
-                    return None
+            else:
+                return None
+                
 
     
     # -- Buscar Usuario -- #
@@ -110,19 +98,22 @@ class clsUser():
 newFullname = input('Por favor ingrese su nombre: ')
 newUsername = input('Por favor ingrese su usuario: ')
 newPassword = input('Por favor ingrese su password: ')
-newEmail = input('Por favor ingrese su email: ')
-newIddpt = input('Por favor ingrese su iddpt: ')
-newIdrole = input('Por favor ingrese su idrole: ')
-#Se crea un objeto tipo clsAccessControl
-usuario = clsUser()
-insertar_usuario = usuario.insert_user(newFullname, newUsername, newPassword, newEmail, newIddpt, newIdrole)
+
+password_constructor = clsLogin()
+oPassworkEncript = password_constructor.encript(newPassword)
 if oPassworkEncript:
     print('El Password almacenado en la memoria es: ' + oPassworkEncript)
 
     #Para validar el passwork introducido
     oCheckPassword = input('Para verificar su password, ingreselo nuevamente: ')
-    if oAccessControl.check_password(oPassworkEncript, oCheckPassword):
+    if password_constructor.check_password(oPassworkEncript, oCheckPassword):
         print('Ha introducido el password correcto')
+        newEmail = input('Por favor ingrese su email: ')
+        newIddpt = input('Por favor ingrese su iddpt: ')
+        newIdrole = input('Por favor ingrese su idrole: ')
+        #Se crea un objeto tipo clsAccessControl
+        usuario = clsUser()
+        insertar_usuario = usuario.insert_user(newFullname, newUsername, newPassword, newEmail, newIddpt, newIdrole)
     else:
         print('El password es diferente')
 else:
@@ -130,4 +121,5 @@ else:
           'Considere que debe contener al menos: \n'
           '- 1 letra mayuscula y 1 minuscula \n'
           '- 1 numero \n'
-          '- 1 caracter especial: @ . # $ + * ! \n')        
+          '- 1 caracter especial: @ . # $ + * ! \n'
+          '- Intente nuevamente.')  
