@@ -6,17 +6,19 @@ Created on May 1, 2015
 '''
 from flask_sqlalchemy import SQLAlchemy
 
-'''
+
 from flask import Flask
 from flask.ext.migrate import Migrate, MigrateCommand
 from flask.ext.script import Manager
 from flask.ext.sqlalchemy import SQLAlchemy
 
-manager = Manager(app)
-db = SQLAlchemy(app)
-migrate = Migrate(app, db) 
-manager.add_command('db',MigrateCommand)
+from sqlalchemy.engine.url import URL
+from sqlalchemy.orm import relationship, backref
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import create_engine, Column, String, ForeignKey, Integer
 
+
+'''
 def create_app(config_name):
     app = Flask(__name__)
     #app.config.from.object(config[config_name])
@@ -24,7 +26,8 @@ def create_app(config_name):
     
     db.init_app(app)
 '''
-#import settings
+
+import settings
 
 
 #--- BASE DE DATOS
@@ -34,8 +37,8 @@ def create_app(config_name):
 #from sqlalchemy.orm import relationship, backref
 
 # Se declara la dase de datos
-#db = declarative_base()
-
+db = declarative_base()
+'''
 import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
@@ -51,17 +54,17 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'test.db')
 db = SQLAlchemy(app)
 
-
+'''
 #--- TABLAS DE LA BASE DE DATOS
 # Usuarios
-class User(db.Model):
-    __tablename__ = 'usuarios'
-    fullname = db.Column(db.String(50), unique = True)
-    username = db.Column(db.String(16), primary_key = True)
-    password = db.Column(db.String(16), unique = True)
-    email = db.Column(db.String(30), unique = True)
-    iddpt = db.Column(db.Integer, db.ForeignKey('dpt.iddpt'))
-    idrole = db.Column(db.Integer, db.ForeignKey('role.idrole'))
+class User(db):
+    __tablename__ = 'user'
+    fullname = Column(String(50), unique = True)
+    username = Column(String(16), primary_key = True)
+    password = Column(String(16), unique = True)
+    email = Column(String(30), unique = True)
+    iddpt = Column(Integer, ForeignKey('dpt.iddpt'))
+    idrole = Column(Integer,ForeignKey('role.idrole'))
 
     def __init__(self, fullname, username, password, email, iddpt, idrole):
         '''
@@ -75,11 +78,11 @@ class User(db.Model):
         self.idrole = idrole
 
 # Departamentos
-class Dpt(db.Model):
-    __tablename__ = 'departamentos'
-    iddpt = db.Column(db.Integer, primary_key = True)
-    namedpt = db.Column(db.String(50), unique = True)
-    user_dpt = db.relationship('user', backref = 'dpt', lazy = 'dynamic')
+class Dpt(db):
+    __tablename__ = 'dpt'
+    iddpt = Column(Integer, primary_key = True)
+    namedpt = Column(String(50), unique = True)
+    user_dpt = relationship('user', backref = 'dpt', lazy = 'dynamic')
 
     def __init__(self, iddpt, namedpt):
         '''
@@ -90,11 +93,11 @@ class Dpt(db.Model):
         self.user_dpt = user_dpt
         
 # Roles
-class Role(db.Model):
-    __tablename__ = 'roles'
-    idrole = db.Column(db.Integer, primary_key = True)
-    namerole = db.Column(db.String(50), unique = True)
-    user_role = db.relationship('user', backref = 'role', lazy = 'dynamic')
+class Role(db):
+    __tablename__ = 'role'
+    idrole = Column(Integer, primary_key = True)
+    namerole = Column(String(50), unique = True)
+    user_role = relationship('user', backref = 'role', lazy = 'dynamic')
 
     def __init__(self, idrole, namerole):
         '''
@@ -106,9 +109,9 @@ class Role(db.Model):
 
 
 #--- CARGA A LA BASE DE DATOS
-#engine = create_engine(URL(**settings.DATABASE))
+engine = create_engine(URL(**settings.DATABASE))
 
-#db.metadata.create_all(engine)
+db.metadata.create_all(engine)
 
 
 
