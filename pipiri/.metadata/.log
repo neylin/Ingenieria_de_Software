@@ -421,3 +421,205 @@ java.lang.RuntimeException: Finished restoring information for: /usr/bin/python3
 
 !ENTRY org.python.pydev.shared_core 4 4 2015-05-08 17:09:56.827
 !MESSAGE Info: Rebuilding internal caches: /home/neylin/git/pipiri/.metadata/.plugins/com.python.pydev.analysis/python_v1_310hzmx1os98xh4180c0n992a/python.pydevsysteminfo (Expected error to be provided and got no error!)
+!SESSION 2015-05-08 17:56:44.814 -----------------------------------------------
+eclipse.buildId=4.4.2.M20150204-1700
+java.version=1.7.0_79
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.python.pydev.shared_core 4 4 2015-05-08 17:59:23.469
+!MESSAGE Info: Rebuilding internal caches: /home/neylin/git/pipiri/.metadata/.plugins/org.eclipse.core.resources/.projects/APMwSc2/com.python.pydev.analysis/AdditionalProjectInterpreterInfo.pydevinfo (Expected error to be provided and got no error!)
+
+!ENTRY org.python.pydev.shared_core 4 4 2015-05-08 18:02:06.583
+!MESSAGE Expected to find 'from' token as the current temporary token (begin col/line can be wrong)!
+!STACK 0
+java.lang.RuntimeException: Expected to find 'from' token as the current temporary token (begin col/line can be wrong)!
+	at org.python.pydev.core.log.Log.log(Log.java:54)
+	at org.python.pydev.parser.grammarcommon.AbstractTreeBuilder.makeImportFrom25Onwards(AbstractTreeBuilder.java:702)
+	at org.python.pydev.parser.grammar30.TreeBuilder30.onCloseNode(TreeBuilder30.java:510)
+	at org.python.pydev.parser.grammarcommon.AbstractTreeBuilder.closeNode(AbstractTreeBuilder.java:614)
+	at org.python.pydev.parser.grammarcommon.JJTPythonGrammarState.closeNodeScope(JJTPythonGrammarState.java:212)
+	at org.python.pydev.parser.grammar30.PythonGrammar30.ImportFrom(PythonGrammar30.java:3224)
+	at org.python.pydev.parser.grammar30.PythonGrammar30.import_stmt(PythonGrammar30.java:3037)
+	at org.python.pydev.parser.grammar30.PythonGrammar30.small_stmt(PythonGrammar30.java:1439)
+	at org.python.pydev.parser.grammar30.PythonGrammar30.simple_stmt(PythonGrammar30.java:1357)
+	at org.python.pydev.parser.grammar30.PythonGrammar30.stmt(PythonGrammar30.java:1332)
+	at org.python.pydev.parser.grammar30.PythonGrammar30.file_input(PythonGrammar30.java:223)
+	at org.python.pydev.parser.grammar30.PythonGrammar30.file_input(PythonGrammar30.java:1)
+	at org.python.pydev.parser.PyParser.reparseDocument(PyParser.java:541)
+	at org.python.pydev.editor.codecompletion.revisited.modules.AbstractModule.createModuleFromDoc(AbstractModule.java:293)
+	at org.python.pydev.editor.codecompletion.revisited.modules.AbstractModule.createModule(AbstractModule.java:272)
+	at org.python.pydev.editor.codecompletion.revisited.ModulesManager.getModule(ModulesManager.java:917)
+	at org.python.pydev.editor.codecompletion.revisited.ModulesManager.getModule(ModulesManager.java:765)
+	at org.python.pydev.editor.codecompletion.revisited.SystemModulesManager.getModuleWithoutBuiltins(SystemModulesManager.java:357)
+	at org.python.pydev.editor.codecompletion.revisited.ProjectModulesManager.getModuleAndRelatedModulesManager(ProjectModulesManager.java:211)
+	at org.python.pydev.editor.codecompletion.revisited.ProjectModulesManager.getModule(ProjectModulesManager.java:173)
+	at org.python.pydev.editor.codecompletion.revisited.ProjectModulesManager.getModule(ProjectModulesManager.java:159)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getModule(AbstractASTManager.java:465)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findModuleFromPath(AbstractASTManager.java:2124)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1957)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1887)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findTokensOnImportedMods(AbstractASTManager.java:1775)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.internalGenerateGetCompletionsForModule(AbstractASTManager.java:696)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:557)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:526)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:518)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:509)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findTokensOnImportedMods(AbstractASTManager.java:1812)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.internalGenerateGetCompletionsForModule(AbstractASTManager.java:696)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:557)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:526)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:518)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:509)
+	at org.python.pydev.editor.codecompletion.revisited.AssignAnalysis.getNonFunctionDefCompletionsFromAssign(AssignAnalysis.java:299)
+	at org.python.pydev.editor.codecompletion.revisited.AssignAnalysis.getAssignCompletions(AssignAnalysis.java:103)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getAssignCompletions(AbstractASTManager.java:1436)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.internalGenerateGetCompletionsForModule(AbstractASTManager.java:823)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:557)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:526)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:518)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:509)
+	at org.python.pydev.editor.codecompletion.revisited.AssignAnalysis.getNonFunctionDefCompletionsFromAssign(AssignAnalysis.java:299)
+	at org.python.pydev.editor.codecompletion.revisited.AssignAnalysis.getAssignCompletions(AssignAnalysis.java:103)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getAssignCompletions(AbstractASTManager.java:1436)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.internalGenerateGetCompletionsForModule(AbstractASTManager.java:823)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:557)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:526)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:518)
+	at org.python.pydev.editor.codecompletion.revisited.modules.SourceModule.findGlobalTokDef(SourceModule.java:1020)
+	at org.python.pydev.editor.codecompletion.revisited.modules.SourceModule.findDefinitionsFromModAndTok(SourceModule.java:969)
+	at org.python.pydev.editor.codecompletion.revisited.modules.SourceModule.findDefinition(SourceModule.java:951)
+	at org.python.pydev.editor.codecompletion.revisited.modules.SourceModule.findDefinition(SourceModule.java:664)
+	at org.python.pydev.editor.codecompletion.revisited.modules.AbstractModule.findDefinition(AbstractModule.java:1)
+	at org.python.pydev.editor.refactoring.PyRefactoringFindDefinition.findActualDefinition(PyRefactoringFindDefinition.java:177)
+	at org.python.pydev.editor.refactoring.PyRefactoringFindDefinition.findActualDefinition(PyRefactoringFindDefinition.java:79)
+	at org.python.pydev.editor.hover.PyTextHover.getDocstringHover(PyTextHover.java:198)
+	at org.python.pydev.editor.hover.PyTextHover.getHoverInfo(PyTextHover.java:142)
+	at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:168)
+!SESSION 2015-05-08 18:09:12.055 -----------------------------------------------
+eclipse.buildId=4.4.2.M20150204-1700
+java.version=1.7.0_79
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -data /home/neylin/git/pipiri -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.python.pydev.shared_core 1 1 2015-05-08 18:11:03.078
+!MESSAGE No existing console history at: /home/neylin/git/pipiri/.metadata/.plugins/org.python.pydev.shared_interactive_console/history.py
+!STACK 0
+java.io.FileNotFoundException: /home/neylin/git/pipiri/.metadata/.plugins/org.python.pydev.shared_interactive_console/history.py (No such file or directory)
+	at java.io.FileInputStream.open(Native Method)
+	at java.io.FileInputStream.<init>(FileInputStream.java:146)
+	at java.io.FileReader.<init>(FileReader.java:72)
+	at org.python.pydev.shared_interactive_console.console.ScriptConsoleGlobalHistory.load(ScriptConsoleGlobalHistory.java:95)
+	at org.python.pydev.shared_interactive_console.console.ScriptConsoleGlobalHistory.<init>(ScriptConsoleGlobalHistory.java:44)
+	at org.python.pydev.shared_interactive_console.console.ScriptConsoleGlobalHistory.<clinit>(ScriptConsoleGlobalHistory.java:36)
+	at org.python.pydev.shared_interactive_console.console.ScriptConsoleHistory.<init>(ScriptConsoleHistory.java:56)
+	at org.python.pydev.shared_interactive_console.console.ui.ScriptConsole.<init>(ScriptConsole.java:183)
+	at org.python.pydev.debug.newconsole.PydevConsole.<init>(PydevConsole.java:84)
+	at org.python.pydev.debug.newconsole.PydevConsoleFactory.connectDebugger(PydevConsoleFactory.java:169)
+	at org.python.pydev.debug.newconsole.PydevConsoleFactory.access$1(PydevConsoleFactory.java:163)
+	at org.python.pydev.debug.newconsole.PydevConsoleFactory$1.run(PydevConsoleFactory.java:93)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SESSION 2015-05-10 14:41:29.864 -----------------------------------------------
+eclipse.buildId=4.4.2.M20150204-1700
+java.version=1.7.0_79
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.python.pydev.shared_core 4 4 2015-05-10 14:49:52.461
+!MESSAGE Expected to find 'from' token as the current temporary token (begin col/line can be wrong)!
+!STACK 0
+java.lang.RuntimeException: Expected to find 'from' token as the current temporary token (begin col/line can be wrong)!
+	at org.python.pydev.core.log.Log.log(Log.java:54)
+	at org.python.pydev.parser.grammarcommon.AbstractTreeBuilder.makeImportFrom25Onwards(AbstractTreeBuilder.java:702)
+	at org.python.pydev.parser.grammar30.TreeBuilder30.onCloseNode(TreeBuilder30.java:510)
+	at org.python.pydev.parser.grammarcommon.AbstractTreeBuilder.closeNode(AbstractTreeBuilder.java:614)
+	at org.python.pydev.parser.grammarcommon.JJTPythonGrammarState.closeNodeScope(JJTPythonGrammarState.java:212)
+	at org.python.pydev.parser.grammar30.PythonGrammar30.ImportFrom(PythonGrammar30.java:3224)
+	at org.python.pydev.parser.grammar30.PythonGrammar30.import_stmt(PythonGrammar30.java:3037)
+	at org.python.pydev.parser.grammar30.PythonGrammar30.small_stmt(PythonGrammar30.java:1439)
+	at org.python.pydev.parser.grammar30.PythonGrammar30.simple_stmt(PythonGrammar30.java:1357)
+	at org.python.pydev.parser.grammar30.PythonGrammar30.stmt(PythonGrammar30.java:1332)
+	at org.python.pydev.parser.grammar30.PythonGrammar30.file_input(PythonGrammar30.java:223)
+	at org.python.pydev.parser.grammar30.PythonGrammar30.file_input(PythonGrammar30.java:1)
+	at org.python.pydev.parser.PyParser.reparseDocument(PyParser.java:541)
+	at org.python.pydev.editor.codecompletion.revisited.modules.AbstractModule.createModuleFromDoc(AbstractModule.java:293)
+	at org.python.pydev.editor.codecompletion.revisited.modules.AbstractModule.createModule(AbstractModule.java:272)
+	at org.python.pydev.editor.codecompletion.revisited.ModulesManager.getModule(ModulesManager.java:917)
+	at org.python.pydev.editor.codecompletion.revisited.ModulesManager.getModule(ModulesManager.java:765)
+	at org.python.pydev.editor.codecompletion.revisited.SystemModulesManager.getModuleWithoutBuiltins(SystemModulesManager.java:357)
+	at org.python.pydev.editor.codecompletion.revisited.ProjectModulesManager.getModuleAndRelatedModulesManager(ProjectModulesManager.java:211)
+	at org.python.pydev.editor.codecompletion.revisited.ProjectModulesManager.getModule(ProjectModulesManager.java:173)
+	at org.python.pydev.editor.codecompletion.revisited.ProjectModulesManager.getModule(ProjectModulesManager.java:159)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getModule(AbstractASTManager.java:465)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findModuleFromPath(AbstractASTManager.java:2124)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1957)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findOnImportedMods(AbstractASTManager.java:1887)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findTokensOnImportedMods(AbstractASTManager.java:1775)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.internalGenerateGetCompletionsForModule(AbstractASTManager.java:696)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:557)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:526)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:518)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:509)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.findTokensOnImportedMods(AbstractASTManager.java:1812)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.internalGenerateGetCompletionsForModule(AbstractASTManager.java:696)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:557)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:526)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:518)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:509)
+	at org.python.pydev.editor.codecompletion.revisited.AssignAnalysis.getNonFunctionDefCompletionsFromAssign(AssignAnalysis.java:299)
+	at org.python.pydev.editor.codecompletion.revisited.AssignAnalysis.getAssignCompletions(AssignAnalysis.java:103)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getAssignCompletions(AbstractASTManager.java:1436)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.internalGenerateGetCompletionsForModule(AbstractASTManager.java:823)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:557)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:526)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:518)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:509)
+	at org.python.pydev.editor.codecompletion.revisited.AssignAnalysis.getNonFunctionDefCompletionsFromAssign(AssignAnalysis.java:299)
+	at org.python.pydev.editor.codecompletion.revisited.AssignAnalysis.getAssignCompletions(AssignAnalysis.java:103)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getAssignCompletions(AbstractASTManager.java:1436)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.internalGenerateGetCompletionsForModule(AbstractASTManager.java:823)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:557)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:526)
+	at org.python.pydev.editor.codecompletion.revisited.AbstractASTManager.getCompletionsForModule(AbstractASTManager.java:518)
+	at org.python.pydev.editor.codecompletion.revisited.modules.SourceModule.findGlobalTokDef(SourceModule.java:1020)
+	at org.python.pydev.editor.codecompletion.revisited.modules.SourceModule.findDefinitionsFromModAndTok(SourceModule.java:969)
+	at org.python.pydev.editor.codecompletion.revisited.modules.SourceModule.findDefinition(SourceModule.java:951)
+	at org.python.pydev.editor.codecompletion.revisited.modules.SourceModule.findDefinition(SourceModule.java:664)
+	at org.python.pydev.editor.codecompletion.revisited.modules.AbstractModule.findDefinition(AbstractModule.java:1)
+	at org.python.pydev.editor.refactoring.PyRefactoringFindDefinition.findActualDefinition(PyRefactoringFindDefinition.java:177)
+	at org.python.pydev.editor.refactoring.PyRefactoringFindDefinition.findActualDefinition(PyRefactoringFindDefinition.java:79)
+	at org.python.pydev.editor.hover.PyTextHover.getDocstringHover(PyTextHover.java:198)
+	at org.python.pydev.editor.hover.PyTextHover.getHoverInfo(PyTextHover.java:142)
+	at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:168)
+
+!ENTRY org.eclipse.core.resources 2 2 2015-05-10 14:50:46.917
+!MESSAGE Save operation warnings.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2015-05-10 14:50:46.917
+!MESSAGE The project description file (.project) for 'APMwSc2' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
+!SESSION 2015-05-10 16:59:25.996 -----------------------------------------------
+eclipse.buildId=4.4.2.M20150204-1700
+java.version=1.7.0_79
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.egit.ui 4 0 2015-05-10 17:02:58.312
+!MESSAGE An internal error occurred
+!STACK 0
+org.eclipse.jgit.api.errors.JGitInternalException: Entry not found by path: pipiri/APMwSc2/business/access-control/__init__.py
+	at org.eclipse.jgit.api.CommitCommand.createTemporaryIndex(CommitCommand.java:468)
+	at org.eclipse.jgit.api.CommitCommand.call(CommitCommand.java:238)
+	at org.eclipse.egit.core.op.CommitOperation.commit(CommitOperation.java:243)
+	at org.eclipse.egit.core.op.CommitOperation.access$5(CommitOperation.java:232)
+	at org.eclipse.egit.core.op.CommitOperation$1.run(CommitOperation.java:196)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2313)
+	at org.eclipse.egit.core.op.CommitOperation.execute(CommitOperation.java:206)
+	at org.eclipse.egit.ui.internal.commit.CommitJob.run(CommitJob.java:96)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
