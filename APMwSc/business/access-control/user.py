@@ -1,9 +1,11 @@
-
 '''
-Created on May 1, 2015
-
-@author: Neylin Belisario
-         Oriana Graterol
+    Universidad Simon Bolivar.
+    Ingenieria de Software I
+    Integrantes:
+        *.- Neylin Belisario. Carnet: 09-10093 
+        *.- Oriana Graterol.  Carnet: 10-11248
+    Equipo: SoftDev
+    Trimestre Abril - Julio 2015
 '''
 
 # --------------------- IMPORTACIONES --------------------- #
@@ -32,48 +34,22 @@ class clsUser():
         
     # -- Insertar Usuario -- #
     def insert_user(self, fullname, username, password, email, iddpt, idrole):
-        if (len(fullname)<= 50) and (len(username)<= 16) and (len(password)<= 16) and (len(email)<= 30) and isinstance(iddpt,int) and isinstance(idrole, int) :
-            if ((fullname != None) and (username != None)):
-                password_constructor = clsLogin()
-                oPassworkEncript = password_constructor.encript(password)
-                if oPassworkEncript:
-                    print('El Password almacenado en la memoria es: ' + oPassworkEncript)
-                
-                    #Para validar el passwork introducido
-                    oCheckPassword = input('Para verificar su password, ingreselo nuevamente: ')
-                    if password_constructor.check_password(oPassworkEncript, oCheckPassword):
-                        print('Ha introducido el password correcto')
-                        usuario = model.User(fullname,username,password,email,iddpt,idrole)
-                        session.add(usuario)
-                        session.commit()
-                        return True
-    
-                    else:
-                        print('El password es diferente')
-                else:
-                    print('El Password suministrado NO ES CORRECTO. \n'
-                          'Considere que debe contener al menos: \n'
-                          '- 1 letra mayuscula y 1 minuscula \n'
-                          '- 1 numero \n'
-                          '- 1 caracter especial: @ . # $ + * ! \n')
-                    return None
+        usuario = model.User(fullname,username,password,email,iddpt,idrole)
+        session.add(usuario)
+        session.commit()
 
     
     # -- Buscar Usuario -- #
-    def find_user(self, username): 
-        if ((len(username)<=16) and (username != None)):       
-            usuario = session.query(model.User).filter(model.User.username == username).all()
-            return usuario
-        return None
+    def find_user(self, username):       
+        usuario = session.query(model.User).filter(model.User.username == username).all()
+        return usuario
 
 
     # -- Modificar Usuario -- #
     def modify_user_fullname(self, fullname, new):
-        if (fullname != None):
-            session.query(model.User).filter(model.User.fullname == fullname).update({'fullname':(new)})
-            session.commit()
-            return True
-        return None
+        session.query(model.User).filter(model.User.fullname == fullname).update({'fullname':(new)})
+        session.commit()
+        return True
     
     def modify_user_username(self, username, new):
         if (username != None):
@@ -111,28 +87,4 @@ class clsUser():
             session.commit()
             return True
         return None
-
-newFullname = input('Por favor ingrese su nombre: ')
-'''        
-#Se pide info al usuario 
-newFullname = input('Por favor ingrese su nombre: ')
-newUsername = input('Por favor ingrese su usuario: ')
-newPassword = input('Por favor ingrese su password: ')
-newEmail = input('Por favor ingrese su email: ')
-newIddpt = input('Por favor ingrese su iddpt: ')
-newIdrole = input('Por favor ingrese su idrole: ')
-#Se crea un objeto tipo clsUser
-usuario = model.User()
-insertar_usuario = usuario.insert_user(newFullname, newUsername, newPassword, newEmail, newIddpt, newIdrole)
-if insertar_usuario:
-    print('El Usuario almacenado es: ' + insertar_usuario)
-
-    buscar_usuario = usuario.find_user(newUsername)
-
-    if buscar_usuario:
-        print('El usuario encontrado es: ' + buscar_usuario)
-    else:
-        print('No se ha encontrado el usuario')
-else:
-    print('No se ha insertado el usuario')
-'''
+    

@@ -1,8 +1,11 @@
 '''
-Created on May 1, 2015
-
-@author: Neylin Belisario
-         Oriana Graterol
+    Universidad Simon Bolivar.
+    Ingenieria de Software I
+    Integrantes:
+        *.- Neylin Belisario. Carnet: 09-10093 
+        *.- Oriana Graterol.  Carnet: 10-11248
+    Equipo: SoftDev
+    Trimestre Abril - Julio 2015
 '''
 
 # --------------------- IMPORTACIONES --------------------- #

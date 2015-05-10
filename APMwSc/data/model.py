@@ -1,62 +1,34 @@
 '''
-Created on May 1, 2015
-
-@author: Neylin Belisario
-         Oriana Graterol
+    Universidad Simon Bolivar.
+    Ingenieria de Software I
+    Integrantes:
+        *.- Neylin Belisario. Carnet: 09-10093 
+        *.- Oriana Graterol.  Carnet: 10-11248
+    Equipo: SoftDev
+    Trimestre Abril - Julio 2015
 '''
-from flask_sqlalchemy import SQLAlchemy
 
-
-from flask import Flask
-from flask.ext.migrate import Migrate, MigrateCommand
-from flask.ext.script import Manager
-from flask.ext.sqlalchemy import SQLAlchemy
-
-from sqlalchemy.engine.url import URL
-from sqlalchemy.orm import relationship, backref
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import create_engine, Column, String, ForeignKey, Integer
-
-
-'''
-def create_app(config_name):
-    app = Flask(__name__)
-    #app.config.from.object(config[config_name])
-    config[config_name].init_app(app)
-    
-    db.init_app(app)
-'''
+# --------------------- IMPORTACIONES --------------------- #
 
 import settings
 
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import create_engine
+from sqlalchemy import Column, Integer, String, Date, Text, Float
+from sqlalchemy.orm import sessionmaker, scoped_session
+from sqlalchemy import ForeignKey
+from sqlalchemy.orm import relationship, backref
 
-#--- BASE DE DATOS
-#from sqlalchemy import create_engine, Column, Integer, String, ForeignKey
-#from sqlalchemy.ext.declarative import declarative_base
-#from sqlalchemy.engine.url import URL
-#from sqlalchemy.orm import relationship, backref
+from sqlalchemy.engine.url import URL
 
-# Se declara la dase de datos
+# --------------------------------------------------------- #
+
+engine = create_engine(URL(**settings.DATABASE))    
+session = scoped_session(sessionmaker(bind=engine, autocommit=False, autoflush=False))
+
 db = declarative_base()
-'''
-import os
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-#from flask_migrate import Migrate
+db.query = session.query_property()
 
-app = Flask(__name__)
-
-# Configuracion de la Base de Datos
-basedir = os.path.abspath(os.path.dirname(__file__))
-#SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'apl.db') 
-#SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'test.db')
-db = SQLAlchemy(app)
-
-'''
-#--- TABLAS DE LA BASE DE DATOS
-# Usuarios
 class User(db):
     __tablename__ = 'user'
     fullname = Column(String(50), unique = True)
@@ -75,7 +47,7 @@ class User(db):
         self.password = password
         self.email = email
         self.iddpt = iddpt
-        self.idrole = idrole
+        self.idrole = idrole 
 
 # Departamentos
 class Dpt(db):
@@ -90,7 +62,6 @@ class Dpt(db):
         '''
         self.iddpt = iddpt
         self.namedpt = namedpt
-        self.user_dpt = user_dpt
         
 # Roles
 class Role(db):
@@ -105,17 +76,12 @@ class Role(db):
         '''
         self.idrole = idrole
         self.namerole = namerole
-        self.user_role = user_role
 
+def create_tables():
+    db.metadata.create_all(engine)
 
-#--- CARGA A LA BASE DE DATOS
-engine = create_engine(URL(**settings.DATABASE))
+def main():
+    create_tables()
 
-db.metadata.create_all(engine)
-
-
-
-    
-    
-    
-
+if __name__ == "__main__":
+    main()

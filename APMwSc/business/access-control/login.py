@@ -1,15 +1,21 @@
 # -*- coding: utf-8 -*-. 
 '''
-Created on 24/9/2014
-
-@author: Neylin Belisario
-         Oriana Graterol
+    Universidad Simon Bolivar.
+    Ingenieria de Software I
+    Integrantes:
+        *.- Neylin Belisario. Carnet: 09-10093 
+        *.- Oriana Graterol.  Carnet: 10-11248
+    Equipo: SoftDev
+    Trimestre Abril - Julio 2015
 '''
+
+# --------------------- IMPORTACIONES --------------------- #
 
 import uuid
 import hashlib
 import re
-#from asyncio.tasks import sleep
+
+# --------------------------------------------------------- #
  
 class clsLogin(object):
     
