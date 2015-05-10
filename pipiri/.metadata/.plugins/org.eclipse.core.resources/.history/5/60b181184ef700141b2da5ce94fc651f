@@ -1,0 +1,35 @@
+import os
+import sys
+
+# PATH que permite utilizar al modulo "dpt.py"
+#sys.path.append('../../bussines/access-control')
+#from user import clsUser, session
+
+# PATH que permite utilizar al modulo "model.py"
+sys.path.append('../../data')
+import model
+
+def test1_dptExist(self):
+    tempDpt = clsDpt()
+    self.assertIsNotNone( tempDpt )
+    session.query( model.Dpt ).delete()  # Se limpia la base de datos.
+
+
+ ### CASOS VALIDOS( Casos Interiores ).
+    # Test 2: Insertar un dpt que no existe.
+    
+def test2_insert_dptNoExist(self):
+    session.query(model.Dpt).delete()  # Se limpia la base de datos.
+    tempDpt = clsDpt()
+    newIdDpt = 2
+    newNameDpt = 'dpt2.0'
+    result = tempDpt.insert_dpt( newIdDpt, newNameDpt )
+    self.assertTrue(result)
+    
+    # Test 3: Insertar un dpt que ya existe.
+def test3_insert_dptExist(self):
+    tempDpt = clsDpt()
+    newIdDpt = 2
+    newNameDpt = 'dpt2.0'
+    result = tempDpt.insert_dpt( newIdDpt, newNameDpt )
+    self.assertFalse(result)
